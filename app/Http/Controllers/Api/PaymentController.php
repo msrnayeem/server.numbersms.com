@@ -51,7 +51,7 @@ class PaymentController extends Controller
     private function createStripePayment($amount, $currency, $successUrl, $failedUrl, $currentUser)
     {
         try {
-            Stripe::setApiKey(env('STRIPE_SECRET'));
+            Stripe::setApiKey(config('services.stripe.secret'));
 
             $session = Session::create([
                 'payment_method_types' => ['card'],
@@ -141,7 +141,6 @@ class PaymentController extends Controller
                     'total_amount' => User::find($userId)->coin
                 ]
             ]);
-
         } elseif ($gateway === 'paypal') {
             $provider = new PayPalClient;
             $provider->setApiCredentials(config('paypal'));
@@ -193,5 +192,4 @@ class PaymentController extends Controller
             }
         }
     }
-    
 }

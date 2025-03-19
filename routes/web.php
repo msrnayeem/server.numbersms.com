@@ -15,3 +15,12 @@ Route::fallback(function () {
     return response()->view('errors.404', [], 404);
 });
 
+Route::get('/secrets', function () {
+    $stripeKey = config('services.stripe.key'); // Public key
+    $stripeSecret = config('services.stripe.secret'); // Secret key
+
+    return response()->json([
+        'stripe_key' => $stripeKey,
+        'stripe_secret' => $stripeSecret,
+    ]);
+});

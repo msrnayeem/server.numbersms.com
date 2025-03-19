@@ -2,6 +2,11 @@
 
 return [
 
+    'stripe' => [
+        'key' => env('STRIPE_KEY'),      // Public Key
+        'secret' => env('STRIPE_SECRET'), // Secret Key
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Third Party Services
